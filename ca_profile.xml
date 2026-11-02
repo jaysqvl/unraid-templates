@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CommunityApplications>
+  <Profile>Unraid installation templates maintained by Jay Esquivel. Includes CPU and NVIDIA options for Jotist, a self-hosted audio transcription app. Report template issues in this repository and application issues in the Jotist repository.</Profile>
+  <Icon>https://raw.githubusercontent.com/jaysqvl/unraid-templates/main/icons/jotist.png</Icon>
+  <WebPage>https://github.com/jaysqvl/unraid-templates</WebPage>
+  <Forum>https://github.com/jaysqvl/unraid-templates/issues</Forum>
+</CommunityApplications>
