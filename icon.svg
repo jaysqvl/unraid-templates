@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" role="img" aria-labelledby="title">
+  <title id="title">Unraid Templates</title>
+  <rect width="128" height="128" rx="28" fill="#17212b"/>
+  <g fill="none" stroke="#e6edf3" stroke-width="6">
+    <rect x="26" y="28" width="76" height="30" rx="7"/>
+    <rect x="26" y="70" width="76" height="30" rx="7"/>
+  </g>
+  <g fill="#54d6c7">
+    <circle cx="42" cy="43" r="5"/>
+    <circle cx="42" cy="85" r="5"/>
+  </g>
+  <g stroke="#e6edf3" stroke-width="5" stroke-linecap="round">
+    <path d="M65 43h20M65 85h20"/>
+  </g>
+</svg>

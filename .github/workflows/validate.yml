@@ -1,0 +1,25 @@
+name: Validate XML
+
+on: [push, pull_request]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - name: Check XML syntax
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import xml.etree.ElementTree as ET
+
+          for path in [Path("ca_profile.xml"), Path("icon.svg"), *sorted(Path("templates").glob("*.xml"))]:
+              ET.parse(path)
+              print(f"Valid XML: {path}")
+          PY

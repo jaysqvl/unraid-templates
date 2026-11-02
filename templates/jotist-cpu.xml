@@ -8,7 +8,7 @@
   <Privileged>false</Privileged>
   <Support>https://github.com/jaysqvl/Jotist/issues</Support>
   <Project>https://github.com/jaysqvl/Jotist</Project>
-  <ReadMe>https://raw.githubusercontent.com/jaysqvl/unraid-templates/main/README.md</ReadMe>
+  <ReadMe>https://raw.githubusercontent.com/jaysqvl/unraid-templates/main/docs/apps/jotist.md</ReadMe>
   <Overview>Jotist turns audio and video into searchable transcripts, speaker labels, notes, and optional summaries and chat. Run local speech models on your own server and keep your recordings under your control.
 
 This CPU option follows the latest stable release and requires no NVIDIA GPU. Model availability, memory requirements, and processing speed depend on the selected model. Models and runtime dependencies download when needed.

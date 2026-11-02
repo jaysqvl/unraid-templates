@@ -1,101 +1,47 @@
-# Unraid templates
+# Unraid Templates
 
-Unraid Community Applications templates maintained by Jay Esquivel for
-[Jotist](https://github.com/jaysqvl/Jotist), a self-hosted audio transcription app.
+Docker application templates for [Unraid Community Applications](https://ca.unraid.net/),
+maintained by [jaysqvl](https://github.com/jaysqvl).
 
-| Template | Image | Hardware |
-| --- | --- | --- |
-| [Jotist-CPU](templates/jotist-cpu.xml) | `ghcr.io/jaysqvl/jotist:latest` | Intel/AMD 64-bit CPU |
-| [Jotist-NVIDIA](templates/jotist-nvidia.xml) | `ghcr.io/jaysqvl/jotist:latest-cuda` | Intel/AMD 64-bit CPU and a CUDA 12.6-compatible NVIDIA GPU |
+## Applications
 
-Both templates track stable releases. NVIDIA requires Unraid's
-[NVIDIA Driver plugin](https://forums.unraid.net/topic/98978-plugin-nvidia-driver/)
-and a compatible host driver. RTX 50-series/Blackwell inference is not qualified
-for the CUDA 12.6 image. CPU/GPU model support and memory requirements vary;
-consult Jotist's in-app model catalog.
+| Application | Description | Templates | Setup guide |
+| --- | --- | --- | --- |
+| [Jotist](https://github.com/jaysqvl/Jotist) | Audio transcription, speaker labels, and notes | [CPU](templates/jotist-cpu.xml) · [NVIDIA](templates/jotist-nvidia.xml) | [Jotist on Unraid](docs/apps/jotist.md) |
 
-## Install
+## Installation
 
-The templates are prepared for Community Applications submission. A public
-repository alone does not make them appear in the Apps catalog.
+For applications listed in Community Applications, search the **Apps** tab on
+your Unraid server. Choose the appropriate template, review its settings, and
+follow the application's setup guide above.
 
-Once listed, search the Apps tab for **Jotist-CPU** or **Jotist-NVIDIA**, choose
-the appropriate option, and review its port and appdata folders before applying.
-The default HTTP port is **8080**; choose another host port if it is occupied.
-For NVIDIA, leave `NVIDIA_VISIBLE_DEVICES` as `all` or enter a GPU UUID from the
-NVIDIA Driver settings. The template enables `--runtime=nvidia` and
-`compute,utility` capabilities.
+### Manual installation
 
-Open the container's **WebUI** to create the first account. Local transcription
-runs on your server. Optional cloud transcription and LLM features send content
-to the provider you configure. Models and runtime dependencies download when
-needed; allow disk space for the selected models.
+Templates can also be installed before they are listed in Community Applications:
 
-## Persistent storage
+1. Open a template from the table above and download its **Raw** XML file.
+2. Copy it to `/boot/config/plugins/dockerMan/templates-user/` on your Unraid
+   server, using a filename that does not replace an existing saved template.
+3. Open **Docker → Add Container** and select it from the **Template** dropdown.
+4. Review the host ports, storage paths, and application requirements, then apply.
 
-Each template supplies three bind mounts. Their default parent folder is
-`/mnt/user/appdata/jotist-cpu` or `/mnt/user/appdata/jotist-nvidia`:
+## Support
 
-| Host subfolder | Container path | Contents |
-| --- | --- | --- |
-| `data` | `/app/data` | Database, recordings, transcripts, settings, and generated signing secret |
-| `whisperx-env` | `/app/whisperx-env` | Managed Python environments and model files |
-| `home` | `/home/appuser` | Hugging Face, Torch, and package/download caches |
+Report template issues, such as incorrect defaults or missing settings, in
+[this repository](https://github.com/jaysqvl/unraid-templates/issues). Include
+the template name, Unraid version, and relevant settings or logs, with secrets
+and personal information removed.
 
-Keep all three mounts when updating or recreating a container. Back up the
-application data and signing secret. The app creates its signing secret on first
-start and keeps it in the persistent data folder.
+For application bugs and usage questions, use the support links in the
+application's setup guide or template.
 
-The advanced `PUID`/`PGID` defaults are **99:100** (Unraid's `nobody:users`).
-Jotist's entrypoint starts as root to prepare permissions, then runs the app as
-that user and group.
+## Adding a template
 
-The templates use different default data folders so two installations do not
-open the same database. They still need different host ports if run together.
-When switching CPU/NVIDIA variants or migrating an existing installation, stop
-the previous container first and carry forward its actual three mount paths,
-database path, signing secret, and effective UID/GID. Follow Jotist's
-[migration guide](https://github.com/jaysqvl/Jotist/blob/main/docs/jotist-migration.md).
+See [CONTRIBUTING.md](CONTRIBUTING.md) for the repository layout, template
+conventions, validation, and Community Applications submission process.
 
-## Updates
+## License
 
-The templates keep the same `latest` and `latest-cuda` image references across
-normal stable releases. Jotist's release process advances those tags. Unraid's
-image update check can then offer the new image; installation happens when the
-user chooses Update or through their configured automatic updater.
-
-Template changes are needed when installation settings change, such as required
-environment variables, mount paths, ports, or GPU setup. Existing installations
-may need those settings changed in their container editor; updating the catalog
-template does not migrate existing data or guarantee that saved settings change.
-Users can enter a versioned image tag in the Repository field to stay on a
-specific release.
-
-## Submit this repository
-
-1. Open the [Community Apps submission portal](https://ca.unraid.net/submit/new)
-   and sign in with your Unraid account.
-2. Enter **`https://github.com/jaysqvl/unraid-templates`** as the repository URL.
-3. Run **Validate** and **Scan**. Confirm the preview contains **Jotist-CPU** and
-   **Jotist-NVIDIA**, the correct image tags, icon, support links, and hardware
-   requirements. Resolve any portal findings before proceeding.
-4. Review the final submission and click **Submit** when ready.
-
-The repository includes the required root `LICENSE`, `ca_profile.xml`, and one
-version 2 Docker XML file per option. The `TemplateURL` fields point to their
-canonical raw GitHub files. See the official
-[submission requirements](https://ca.unraid.net/submit/help) and
-[XML field reference](https://ca.unraid.net/submit/help/xml-field-reference).
-
-## Support and licensing
-
-- [Template installation issues](https://github.com/jaysqvl/unraid-templates/issues)
-- [Jotist application issues](https://github.com/jaysqvl/Jotist/issues)
-- [Jotist documentation](https://github.com/jaysqvl/Jotist#readme)
-
-Templates and repository documentation are MIT licensed. The Jotist icon in
-`icons/jotist.png` is the existing Jotist brand asset, copied without modification.
-Jotist is an independently maintained continuation of Scriberr; see its
-[attribution](https://github.com/jaysqvl/Jotist/blob/main/ATTRIBUTION.md) and
-[MIT license](https://github.com/jaysqvl/Jotist/blob/main/LICENSE). Model and
-third-party runtime licenses remain separate from these templates.
+Templates and documentation are [MIT licensed](LICENSE). Application images,
+models, and other dependencies retain their own licenses. See
+[icon attribution](icons/README.md) for artwork included in this repository.

@@ -9,7 +9,7 @@
   <ExtraParams>--runtime=nvidia</ExtraParams>
   <Support>https://github.com/jaysqvl/Jotist/issues</Support>
   <Project>https://github.com/jaysqvl/Jotist</Project>
-  <ReadMe>https://raw.githubusercontent.com/jaysqvl/unraid-templates/main/README.md</ReadMe>
+  <ReadMe>https://raw.githubusercontent.com/jaysqvl/unraid-templates/main/docs/apps/jotist.md</ReadMe>
   <Overview>Jotist turns audio and video into searchable transcripts, speaker labels, notes, and optional summaries and chat. Run local speech models on your own server and keep your recordings under your control.
 
 This NVIDIA option follows the latest stable CUDA 12.6 release. Install Unraid's NVIDIA Driver plugin and use a compatible GPU and host driver. Select all GPUs or enter a GPU UUID in NVIDIA_VISIBLE_DEVICES. RTX 50-series/Blackwell inference is not qualified for this image. Model support and VRAM requirements vary by model.
